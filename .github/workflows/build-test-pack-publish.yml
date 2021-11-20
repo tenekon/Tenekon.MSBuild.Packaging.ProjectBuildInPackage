@@ -1,0 +1,69 @@
+name: Build, then publish
+
+on:
+  push:
+    branches:
+      - "*"
+  pull_request:
+    branches:
+      - "*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Fetch unshallow
+        run: git fetch --prune --tags --unshallow
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: "5.0.x"
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Build projects
+        run: dotnet build --configuration Release --no-restore
+      - name: Test projects
+        run: dotnet test
+      - name: Pack projects
+        run: dotnet pack --no-restore
+      - name: Upload packages (artifacts)
+        uses: actions/upload-artifact@v2
+        with:
+          name: nuget-packages
+          path: |
+            src/**/*.nupkg
+            src/**/*.snupkg
+  publish:
+    if: contains('
+      refs/heads/develop
+      refs/heads/main', github.ref)
+    needs: build
+    runs-on: windows-latest
+    steps:
+      - name: Download package artifacts
+        id: download-artifacts
+        uses: actions/download-artifact@v2
+        continue-on-error: true
+      - name: Push nupkg's
+        id: push-nupkg
+        if: ${{ steps.download-artifacts.outcome == 'success' }}
+        run: echo "::set-output name=CONSOLE::$(dotnet nuget push '**/*.nupkg' --source 'https://api.nuget.org/v3/index.json' --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate)"
+        continue-on-error: true
+      - name: Push nupkg's console output
+        if: steps.push-nupkg.outcome != 'skipped'
+        run: echo "${{steps.push-nupkg.outputs.CONSOLE}}"
+      - name: Push nupkg's suceeded
+        if: "${{ steps.push-nupkg.outcome == 'failure' && !contains(steps.push-nupkg.outputs.CONSOLE, 'error: File does not exist') }}"
+        run: exit 1
+      - name: Push snupkg's
+        id: push-snupkg
+        if: ${{ steps.download-artifacts.outcome == 'success' }}
+        run: echo "::set-output name=CONSOLE::$(dotnet nuget push '**/*.snupkg' --source 'https://api.nuget.org/v3/index.json' --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate)"
+        continue-on-error: true
+      - name: Push snupkg's console output
+        if: steps.push-snupkg.outcome != 'skipped'
+        run: echo "${{steps.push-snupkg.outputs.CONSOLE}}"
+      - name: Push snupkg's suceeded
+        if: "${{ steps.push-snupkg.outcome == 'failure' && !contains(steps.push-snupkg.outputs.CONSOLE, 'error: File does not exist') }}"
+        run: exit 1

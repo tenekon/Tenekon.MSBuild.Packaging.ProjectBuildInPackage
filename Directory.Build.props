@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Authors Condition="'$(Authors)' == ''">Teroneko .NET Tools</Authors>
+    <Copyright Condition="'$(Copyright)' == ''">Copyright (c) 2021 Teroneko .NET Tools</Copyright>
+    <Product Condition="'$(Product)' == ''">$(MSBuildProjectName)</Product>
+    <PackageLicenseFile Condition="'$(PackageLicenseFile)' == ''">LICENSE</PackageLicenseFile>
+    <PackageIcon Condition="'$(PackageIcon)' == ''">icon.png</PackageIcon>
+    <LangVersion Condition="'$(LangVersion)' == ''">9.0</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+
+    <None Include="$(MSBuildThisFileDirectory)\icon.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+</Project>
