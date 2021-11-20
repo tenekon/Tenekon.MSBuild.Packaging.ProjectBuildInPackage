@@ -10,18 +10,24 @@
 
   <PropertyGroup>
     <IncludeSymbols>false</IncludeSymbols>
-    <!-- To generate a package is part of the test. -->
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <!-- So do not: -->
-    <!--<IsPackable>false</IsPackable>-->
+    <!-- We only create package on build. -->
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\0.Localization\Teronis.MSBuild.Packaging.ProjectBuildInPackage.Test.Localization.csproj" PrivateAssets="all" />
   </ItemGroup>
 
+  <Target Name="test123" AfterTargets="Build">
+    <PropertyGroup>
+      <!-- To generate a package is part of the test. -->
+      <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+      <IsPackable>true</IsPackable>
+    </PropertyGroup>
+  </Target>
+
   <!-- The package ProjectBuildInPackage is created with the project Reference.ProjectBuildInPackage. -->
-  <Target Name="TestProjectBuildInPackageAfterPack" AfterTargets="Pack">
+  <Target Name="TestProjectBuildInPackageAfterPack" AfterTargets="Pack" Condition="'$(IsPackable)' == 'true'">
 
     <PropertyGroup>
       <UnzipProjectBuildInPackageDestinationDirectory>$(MSBuildProjectDirectory)\bin\$(Configuration)\ProjectBuildInPackage</UnzipProjectBuildInPackageDestinationDirectory>
