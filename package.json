@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "release": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
+  },
+  "devDependencies": {
+    "conventional-changelog-cli": "^2.1.1"
+  }
+}
