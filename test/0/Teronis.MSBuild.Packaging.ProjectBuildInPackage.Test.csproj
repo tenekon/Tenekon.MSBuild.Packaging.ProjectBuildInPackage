@@ -1,7 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <Import Condition="'$(IsMSBuildFileImported)' != 'true'" Project="$([MSBuild]::GetPathOfFileAbove(.msbuild))" />
-  <Import Project="$(TeronisMSBuildPackagingProjectBuildInPackagePropsFile)" />
+  <PropertyGroup>
+    <TeronisProjectBuildInPackagePropsFile>../../src/build/Teronis.MSBuild.Packaging.ProjectBuildInPackage.props</TeronisProjectBuildInPackagePropsFile>
+    <TeronisProjectBuildInPackageTargetsFile>../../src/build/Teronis.MSBuild.Packaging.ProjectBuildInPackage.targets</TeronisProjectBuildInPackageTargetsFile>
+    <TeronisMSBuildBuildTasksTargetTasksTargetsFile>../../lib/Teronis.MSBuild.BuildTasks/build/TargetTasks.targets</TeronisMSBuildBuildTasksTargetTasksTargetsFile>
+  </PropertyGroup>
+
+  <Import Project="$(TeronisProjectBuildInPackagePropsFile)" />
 
   <PropertyGroup>
     <IncludeSymbols>false</IncludeSymbols>
@@ -21,7 +26,7 @@
     <PropertyGroup>
       <UnzipProjectBuildInPackageDestinationDirectory>$(MSBuildProjectDirectory)\bin\$(Configuration)\ProjectBuildInPackage</UnzipProjectBuildInPackageDestinationDirectory>
     </PropertyGroup>
-    
+
     <PropertyGroup>
       <LocalPackageSearchProperties>
         UnzipPackageDirectory=$(MSBuildProjectDirectory)\bin\$(Configuration);
@@ -29,19 +34,19 @@
         UnzipPackageDestinationDirectory=$(UnzipProjectBuildInPackageDestinationDirectory)
       </LocalPackageSearchProperties>
     </PropertyGroup>
-    
+
     <MSBuild Projects="$(TeronisMSBuildBuildTasksTargetTasksTargetsFile)" Targets="UnzipPackage" Properties="$(LocalPackageSearchProperties)">
       <Output TaskParameter="TargetOutputs" ItemName="_FoundPackage" />
     </MSBuild>
 
     <ItemGroup>
-      
+
       <_UnzippedFiles Include="$(UnzipProjectBuildInPackageDestinationDirectory)\**\*" />
 
       <_UnzippedFiles Include="@(_UnzippedFiles)">
         <DirectoryWithoutSlash>$([System.IO.Path]::GetFileName($([System.IO.Path]::GetDirectoryName('%(_UnzippedFiles.FullPath)'))))\%(_UnzippedFiles.Filename)%(_UnzippedFiles.Extension)</DirectoryWithoutSlash>
       </_UnzippedFiles>
-      
+
     </ItemGroup>
 
     <PropertyGroup>
@@ -58,7 +63,7 @@
     <Message Text="[$(MSBuildThisFileName)] package %(_FoundPackage.Filename)%(_FoundPackage.Extension) has been deleted from the disk." Importance="high" />
 
   </Target>
-  
-  <Import Project="$(TeronisMSBuildPackagingProjectBuildInPackageTargetsFile)" />
+
+  <Import Project="$(TeronisProjectBuildInPackageTargetsFile)" />
 
 </Project>
