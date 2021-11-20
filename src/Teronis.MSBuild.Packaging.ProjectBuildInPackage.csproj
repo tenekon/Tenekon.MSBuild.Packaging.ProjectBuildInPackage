@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup>
+
+    <Description>Allows project reference content to be added to the NuGet-package during pack process.</Description>
+
+    <!--
+    # We don't build an executable package.
+    # We build an only-build-time package. 
+    -->
+    <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking> 
+    <DevelopmentDependency>true</DevelopmentDependency>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <IncludeSymbols>false</IncludeSymbols>
+
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="build\**" Pack="true" PackagePath="build\" />
+    <None Include="buildMultiTargeting\**" Pack="true" PackagePath="buildMultiTargeting\" />
+  </ItemGroup>
+
+</Project>
