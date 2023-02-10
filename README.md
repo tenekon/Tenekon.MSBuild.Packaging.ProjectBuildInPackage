@@ -2,6 +2,8 @@
 
 _Allow project reference content to be added to the NuGet-package during pack process._
 
+> Was recently part of the [Teronis.DotNet code base](https://github.com/teneko/Teronis.DotNet/tree/develop/src/MSBuild/Packaging/ProjectBuildInPackage) but _Teronis.MSBuild.Packaging.ProjectBuildInPackage_ deserves its own repository.
+
 ## Installation
 
 Package Managaer
