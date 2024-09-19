@@ -1,5 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TeronisProjectBuildInPackagePropsFile>../../src/build/Teronis.MSBuild.Packaging.ProjectBuildInPackage.props</TeronisProjectBuildInPackagePropsFile>
     <TeronisProjectBuildInPackageTargetsFile>../../src/build/Teronis.MSBuild.Packaging.ProjectBuildInPackage.targets</TeronisProjectBuildInPackageTargetsFile>
@@ -12,10 +11,12 @@
     <IncludeSymbols>false</IncludeSymbols>
     <!-- We only create package on build. -->
     <IsPackable>false</IsPackable>
+    <ProjectBuildInPackageVerbosity>d</ProjectBuildInPackageVerbosity>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\0.Localization\Teronis.MSBuild.Packaging.ProjectBuildInPackage.Test.Localization.csproj" PrivateAssets="all" />
+    <ProjectReference Include="..\0.Localization2\Teronis.MSBuild.Packaging.ProjectBuildInPackage.Test.Localization2.csproj" PrivateAssets="all" />
   </ItemGroup>
 
   <Target Name="test123" AfterTargets="Build">
@@ -28,7 +29,6 @@
 
   <!-- The package ProjectBuildInPackage is created with the project Reference.ProjectBuildInPackage. -->
   <Target Name="TestProjectBuildInPackageAfterPack" AfterTargets="Pack" Condition="'$(IsPackable)' == 'true'">
-
     <PropertyGroup>
       <UnzipProjectBuildInPackageDestinationDirectory>$(MSBuildProjectDirectory)\bin\$(Configuration)\ProjectBuildInPackage</UnzipProjectBuildInPackageDestinationDirectory>
     </PropertyGroup>
@@ -46,18 +46,18 @@
     </MSBuild>
 
     <ItemGroup>
-
       <_UnzippedFiles Include="$(UnzipProjectBuildInPackageDestinationDirectory)\**\*" />
-
       <_UnzippedFiles Include="@(_UnzippedFiles)">
         <DirectoryWithoutSlash>$([System.IO.Path]::GetFileName($([System.IO.Path]::GetDirectoryName('%(_UnzippedFiles.FullPath)'))))\%(_UnzippedFiles.Filename)%(_UnzippedFiles.Extension)</DirectoryWithoutSlash>
       </_UnzippedFiles>
-
     </ItemGroup>
 
     <PropertyGroup>
-      <HasLocalizationResources>false</HasLocalizationResources>
-      <HasLocalizationResources Condition="'en-US\$(MSBuildThisFilename).Localization.resources.dll' == '%(_UnzippedFiles.DirectoryWithoutSlash)'">true</HasLocalizationResources>
+      <_UnzippedFilePaths>@(_UnzippedFiles->'%(DirectoryWithoutSlash)')</_UnzippedFilePaths>
+      <HasLocalizationResources Condition="'$(HasLocalizationResources)' != 'false'">$([System.String]::Copy('$(_UnzippedFilePaths)').Contains('$(MSBuildThisFilename).Localization.dll'))</HasLocalizationResources>
+      <HasLocalizationResources Condition="'$(HasLocalizationResources)' != 'false'">$([System.String]::Copy('$(_UnzippedFilePaths)').Contains('$(MSBuildThisFilename).Localization2.dll'))</HasLocalizationResources>
+      <HasLocalizationResources Condition="'$(HasLocalizationResources)' != 'false'">$([System.String]::Copy('$(_UnzippedFilePaths)').Contains('en-US\$(MSBuildThisFilename).Localization.resources.dll'))</HasLocalizationResources>
+      <HasLocalizationResources Condition="'$(HasLocalizationResources)' != 'false'">$([System.String]::Copy('$(_UnzippedFilePaths)').Contains('en-US\$(MSBuildThisFilename).Localization2.resources.dll'))</HasLocalizationResources>
     </PropertyGroup>
 
     <Error Condition="'$(HasLocalizationResources)' != 'true'" Text="[$(MSBuildThisFileName)] Test failed: The local package %(_FoundPackage.Identity) did not contain expected private assets." />
@@ -67,9 +67,7 @@
     <Delete Files="@(_UnzippedFiles)" />
     <RemoveDir Directories="@(_UnzippedFiles->'%(RootDir)%(Directory)')" />
     <Message Text="[$(MSBuildThisFileName)] package %(_FoundPackage.Filename)%(_FoundPackage.Extension) has been deleted from the disk." Importance="high" />
-
   </Target>
 
   <Import Project="$(TeronisProjectBuildInPackageTargetsFile)" />
-
 </Project>

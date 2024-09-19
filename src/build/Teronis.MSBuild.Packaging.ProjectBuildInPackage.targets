@@ -4,21 +4,16 @@ Copyright (c) Teroneko.
 Licensed under the MIT license. See LICENSE file in the project root for full license information.
 -->
 <Project InitialTargets="ApplyProjectBuildInPackageTargetsForTfmSpecificBuildOutput" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  
   <Target Name="ApplyProjectBuildInPackageTargetsForTfmSpecificBuildOutput">
-
     <ItemGroup>
       <_ProjectBuildInPackageTargetsForTfmSpecificBuildOutput Include="$(ProjectBuildInPackageTargetsForTfmSpecificBuildOutput.Split(';'))" />
     </ItemGroup>
-
      <PropertyGroup>
       <TargetsForTfmSpecificBuildOutput Condition="'%(_ProjectBuildInPackageTargetsForTfmSpecificBuildOutput.Identity)' != '' And !$(TargetsForTfmSpecificBuildOutput.Contains('%(_ProjectBuildInPackageTargetsForTfmSpecificBuildOutput.Identity)'))">$(TargetsForTfmSpecificBuildOutput);%(_ProjectBuildInPackageTargetsForTfmSpecificBuildOutput.Identity)</TargetsForTfmSpecificBuildOutput>
     </PropertyGroup>
-
   </Target>
 
   <Target Name="CopyProjectBuildInPackage" DependsOnTargets="BuildOnlySettings;ResolveReferences">
-
     <PropertyGroup>
       <IsVerbosityDetailed>false</IsVerbosityDetailed>
       <IsVerbosityDetailed Condition="'$(ProjectBuildInPackageVerbosity)' == 'detailed' Or '$(ProjectBuildInPackageVerbosity)' == 'd'">true</IsVerbosityDetailed>
@@ -50,9 +45,7 @@ Licensed under the MIT license. See LICENSE file in the project root for full li
         
         If sub folder is empty, the root folder of specific target framework in package is chosen.
       -->
-      <BuildOutputInPackage Include="@(_ReferenceCopyLocalPaths)" TargetPath="%(_ReferenceCopyLocalPaths.DestinationSubDirectory)" />
+      <BuildOutputInPackage Include="@(_ReferenceCopyLocalPaths)" TargetPath="%(_ReferenceCopyLocalPaths.DestinationSubDirectory)%(Filename)%(Extension)" />
     </ItemGroup>
-
   </Target>
-
 </Project>
