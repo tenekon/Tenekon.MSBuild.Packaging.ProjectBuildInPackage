@@ -1,3 +1,12 @@
+## [1.0.2](https://github.com/teneko-net-tools/Teronis.MSBuild.Packaging.ProjectBuildInPackage/compare/1.0.0...1.0.2) (2024-09-19)
+
+
+### Bug Fixes
+
+* fixed a bug indicated by NU5118 where different Identity values but same TargetPath values let to pack only the first Identity in the same pool of TargetPath ([fc11e78](https://github.com/teneko-net-tools/Teronis.MSBuild.Packaging.ProjectBuildInPackage/commit/fc11e78e9d133e7d462b061cc0168b10f7429735))
+
+
+
 # [](https://github.com/Teroneko-NET-Tools/Teronis.MSBuild.Packaging.ProjectBuildInPackage/compare/v1.0.0...v) (2021-11-20)
 
 
