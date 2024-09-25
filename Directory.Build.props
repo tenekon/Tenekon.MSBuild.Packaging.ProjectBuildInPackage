@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <Authors Condition="'$(Authors)' == ''">Teroneko .NET Tools</Authors>
-    <Copyright Condition="'$(Copyright)' == ''">Copyright (c) 2021 Teroneko .NET Tools</Copyright>
+    <Authors Condition="'$(Authors)' == ''">Tenekon</Authors>
+    <Copyright Condition="'$(Copyright)' == ''">Copyright (c) 2024 Tenekon</Copyright>
     <Product Condition="'$(Product)' == ''">$(MSBuildProjectName)</Product>
     <PackageLicenseFile Condition="'$(PackageLicenseFile)' == ''">LICENSE</PackageLicenseFile>
     <PackageIcon Condition="'$(PackageIcon)' == ''">icon.jpg</PackageIcon>

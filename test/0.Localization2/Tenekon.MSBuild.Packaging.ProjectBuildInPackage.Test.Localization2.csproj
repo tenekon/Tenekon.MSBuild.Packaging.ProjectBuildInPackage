@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <RootNamespace>Teronis.Localization2</RootNamespace>
+    <RootNamespace>Tenekon.Localization2</RootNamespace>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 

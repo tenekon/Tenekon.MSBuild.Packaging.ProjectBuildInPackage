@@ -1,21 +1,23 @@
-# Teronis.MSBuild.Packaging.ProjectBuildInPackage [![Nuget](https://img.shields.io/nuget/v/Teronis.MSBuild.Packaging.ProjectBuildInPackage)](https://www.nuget.org/packages/Teronis.MSBuild.Packaging.ProjectBuildInPackage)
+# Tenekon.MSBuild.Packaging.ProjectBuildInPackage [![Nuget](https://img.shields.io/nuget/v/Tenekon.MSBuild.Packaging.ProjectBuildInPackage)](https://www.nuget.org/packages/Tenekon.MSBuild.Packaging.ProjectBuildInPackage)
 
 _Allow project reference content to be added to the NuGet-package during pack process._
 
-> Was recently part of the [Teronis.DotNet code base](https://github.com/teneko/Teronis.DotNet/tree/develop/src/MSBuild/Packaging/ProjectBuildInPackage) but _Teronis.MSBuild.Packaging.ProjectBuildInPackage_ deserves its own repository.
+> Was in the past part of the [Teronis.DotNet code base](https://github.com/teneko/Teronis.DotNet/tree/develop/src/MSBuild/Packaging/ProjectBuildInPackage) but _Tenekon.MSBuild.Packaging.ProjectBuildInPackage_ deserves its own repository.
+
+> Was recently named `Teronis.MSBuild.Packaging.ProjectBuildInPackage`.
 
 ## Installation
 
 Package Managaer
 
 ```
-Install-Package Teronis.MSBuild.Packaging.ProjectBuildInPackage -Version <type here version>
+Install-Package Tenekon.MSBuild.Packaging.ProjectBuildInPackage -Version <type here version>
 ```
 
 .NET CLI
 
 ```
-dotnet add package Teronis.MSBuild.Packaging.ProjectBuildInPackage --version <type here version>
+dotnet add package Tenekon.MSBuild.Packaging.ProjectBuildInPackage --version <type here version>
 ```
 
 ## Settings
@@ -49,10 +51,10 @@ dotnet add package Teronis.MSBuild.Packaging.ProjectBuildInPackage --version <ty
 ```
 <PropertyGroup>
   <TargetFrameworks>netstandard2.0;netcoreapp3.1;net5.0</TargetFrameworks>
-  <AssemblyName>Teronis.NetStandard.Core</AssemblyName>
+  <AssemblyName>Tenekon.NetStandard.Core</AssemblyName>
 </PropertyGroup>
 <ItemGroup>
-  <ProjectReference Include="..\..\Core.Localization\src\Teronis.NetStandard.Core.Localization.csproj" />
+  <ProjectReference Include="..\..\Core.Localization\src\Tenekon.NetStandard.Core.Localization.csproj" />
 </ItemGroup>
 ```
 
@@ -61,10 +63,10 @@ dotnet add package Teronis.MSBuild.Packaging.ProjectBuildInPackage --version <ty
 ```
 <PropertyGroup>
   <TargetFrameworks>netstandard2.0;netcoreapp3.1;net5.0</TargetFrameworks>
-  <AssemblyName>Teronis.NetStandard.Core</AssemblyName>
+  <AssemblyName>Tenekon.NetStandard.Core</AssemblyName>
 </PropertyGroup>
 <ItemGroup>
-  <ProjectReference Include="..\..\Core.Localization\src\Teronis.NetStandard.Core.Localization.csproj" PrivateAssets="all" />
+  <ProjectReference Include="..\..\Core.Localization\src\Tenekon.NetStandard.Core.Localization.csproj" PrivateAssets="all" />
 </ItemGroup>
 ```
 
@@ -77,35 +79,35 @@ There are three ways to verify that it worked:
 ```
 3>Target _WalkEachTargetPerFramework:
 3>  Target CopyProjectBuildInPackage:
-3>    [Teronis.MSBuild.Packaging.ProjectBuildInPackage] Thanks for using my package. <3
-3>    [Teronis.MSBuild.Packaging.ProjectBuildInPackage] Copy ..\..\Core.Localization\src\bin\Debug\netstandard2.0\Teronis.NetStandard.Core.Localization.dll (local) to .\ (package)
-3>    [Teronis.MSBuild.Packaging.ProjectBuildInPackage] Copy ..\..\Core.Localization\src\bin\Debug\netstandard2.0\Teronis.NetStandard.Core.Localization.pdb (local) to .\ (package)
-3>    [Teronis.MSBuild.Packaging.ProjectBuildInPackage] Copy ..\..\Core.Localization\src\bin\Debug\netstandard2.0\Teronis.NetStandard.Core.Localization.xml (local) to .\ (package)
-3>    [Teronis.MSBuild.Packaging.ProjectBuildInPackage] Copy ..\..\Core.Localization\src\bin\Debug\netstandard2.0\de-DE\Teronis.NetStandard.Core.Localization.resources.dll (local) to .\de-DE\ (package)
-3>    [Teronis.MSBuild.Packaging.ProjectBuildInPackage] Copy ..\..\Core.Localization\src\bin\Debug\netstandard2.0\en-US\Teronis.NetStandard.Core.Localization.resources.dll (local) to .\en-US\ (package)
-3>    [Teronis.MSBuild.Packaging.ProjectBuildInPackage] Copy ..\..\Core.Localization\src\bin\Debug\netstandard2.0\nl-NL\Teronis.NetStandard.Core.Localization.resources.dll (local) to .\nl-NL\ (package)
-3>    [Teronis.MSBuild.Packaging.ProjectBuildInPackage] 6 local files have been copied to package. (TargetFramework=net5.0)
+3>    [Tenekon.MSBuild.Packaging.ProjectBuildInPackage] Thanks for using my package. <3
+3>    [Tenekon.MSBuild.Packaging.ProjectBuildInPackage] Copy ..\..\Core.Localization\src\bin\Debug\netstandard2.0\Tenekon.NetStandard.Core.Localization.dll (local) to .\ (package)
+3>    [Tenekon.MSBuild.Packaging.ProjectBuildInPackage] Copy ..\..\Core.Localization\src\bin\Debug\netstandard2.0\Tenekon.NetStandard.Core.Localization.pdb (local) to .\ (package)
+3>    [Tenekon.MSBuild.Packaging.ProjectBuildInPackage] Copy ..\..\Core.Localization\src\bin\Debug\netstandard2.0\Tenekon.NetStandard.Core.Localization.xml (local) to .\ (package)
+3>    [Tenekon.MSBuild.Packaging.ProjectBuildInPackage] Copy ..\..\Core.Localization\src\bin\Debug\netstandard2.0\de-DE\Tenekon.NetStandard.Core.Localization.resources.dll (local) to .\de-DE\ (package)
+3>    [Tenekon.MSBuild.Packaging.ProjectBuildInPackage] Copy ..\..\Core.Localization\src\bin\Debug\netstandard2.0\en-US\Tenekon.NetStandard.Core.Localization.resources.dll (local) to .\en-US\ (package)
+3>    [Tenekon.MSBuild.Packaging.ProjectBuildInPackage] Copy ..\..\Core.Localization\src\bin\Debug\netstandard2.0\nl-NL\Tenekon.NetStandard.Core.Localization.resources.dll (local) to .\nl-NL\ (package)
+3>    [Tenekon.MSBuild.Packaging.ProjectBuildInPackage] 6 local files have been copied to package. (TargetFramework=net5.0)
 3>  Target CopyProjectBuildInPackage:
-3>    [Teronis.MSBuild.Packaging.ProjectBuildInPackage] Thanks for using my package. <3
-3>    [Teronis.MSBuild.Packaging.ProjectBuildInPackage] Copy ..\..\Core.Localization\src\bin\Debug\netstandard2.0\Teronis.NetStandard.Core.Localization.dll (local) to .\ (package)
-3>    [Teronis.MSBuild.Packaging.ProjectBuildInPackage] Copy ..\..\Core.Localization\src\bin\Debug\netstandard2.0\Teronis.NetStandard.Core.Localization.pdb (local) to .\ (package)
-3>    [Teronis.MSBuild.Packaging.ProjectBuildInPackage] Copy ..\..\Core.Localization\src\bin\Debug\netstandard2.0\Teronis.NetStandard.Core.Localization.xml (local) to .\ (package)
-3>    [Teronis.MSBuild.Packaging.ProjectBuildInPackage] Copy ..\..\Core.Localization\src\bin\Debug\netstandard2.0\de-DE\Teronis.NetStandard.Core.Localization.resources.dll (local) to .\de-DE\ (package)
-3>    [Teronis.MSBuild.Packaging.ProjectBuildInPackage] Copy ..\..\Core.Localization\src\bin\Debug\netstandard2.0\en-US\Teronis.NetStandard.Core.Localization.resources.dll (local) to .\en-US\ (package)
-3>    [Teronis.MSBuild.Packaging.ProjectBuildInPackage] Copy ..\..\Core.Localization\src\bin\Debug\netstandard2.0\nl-NL\Teronis.NetStandard.Core.Localization.resources.dll (local) to .\nl-NL\ (package)
-3>    [Teronis.MSBuild.Packaging.ProjectBuildInPackage] 6 local files have been copied to package. (TargetFramework=netcoreapp3.1)
+3>    [Tenekon.MSBuild.Packaging.ProjectBuildInPackage] Thanks for using my package. <3
+3>    [Tenekon.MSBuild.Packaging.ProjectBuildInPackage] Copy ..\..\Core.Localization\src\bin\Debug\netstandard2.0\Tenekon.NetStandard.Core.Localization.dll (local) to .\ (package)
+3>    [Tenekon.MSBuild.Packaging.ProjectBuildInPackage] Copy ..\..\Core.Localization\src\bin\Debug\netstandard2.0\Tenekon.NetStandard.Core.Localization.pdb (local) to .\ (package)
+3>    [Tenekon.MSBuild.Packaging.ProjectBuildInPackage] Copy ..\..\Core.Localization\src\bin\Debug\netstandard2.0\Tenekon.NetStandard.Core.Localization.xml (local) to .\ (package)
+3>    [Tenekon.MSBuild.Packaging.ProjectBuildInPackage] Copy ..\..\Core.Localization\src\bin\Debug\netstandard2.0\de-DE\Tenekon.NetStandard.Core.Localization.resources.dll (local) to .\de-DE\ (package)
+3>    [Tenekon.MSBuild.Packaging.ProjectBuildInPackage] Copy ..\..\Core.Localization\src\bin\Debug\netstandard2.0\en-US\Tenekon.NetStandard.Core.Localization.resources.dll (local) to .\en-US\ (package)
+3>    [Tenekon.MSBuild.Packaging.ProjectBuildInPackage] Copy ..\..\Core.Localization\src\bin\Debug\netstandard2.0\nl-NL\Tenekon.NetStandard.Core.Localization.resources.dll (local) to .\nl-NL\ (package)
+3>    [Tenekon.MSBuild.Packaging.ProjectBuildInPackage] 6 local files have been copied to package. (TargetFramework=netcoreapp3.1)
 3>  Target CopyProjectBuildInPackage:
-3>    [Teronis.MSBuild.Packaging.ProjectBuildInPackage] Thanks for using my package. <3
-3>    [Teronis.MSBuild.Packaging.ProjectBuildInPackage] Copy ..\..\Core.Localization\src\bin\Debug\netstandard2.0\Teronis.NetStandard.Core.Localization.dll (local) to .\ (package)
-3>    [Teronis.MSBuild.Packaging.ProjectBuildInPackage] Copy ..\..\Core.Localization\src\bin\Debug\netstandard2.0\Teronis.NetStandard.Core.Localization.pdb (local) to .\ (package)
-3>    [Teronis.MSBuild.Packaging.ProjectBuildInPackage] Copy ..\..\Core.Localization\src\bin\Debug\netstandard2.0\Teronis.NetStandard.Core.Localization.xml (local) to .\ (package)
-3>    [Teronis.MSBuild.Packaging.ProjectBuildInPackage] Copy ..\..\Core.Localization\src\bin\Debug\netstandard2.0\de-DE\Teronis.NetStandard.Core.Localization.resources.dll (local) to .\de-DE\ (package)
-3>    [Teronis.MSBuild.Packaging.ProjectBuildInPackage] Copy ..\..\Core.Localization\src\bin\Debug\netstandard2.0\en-US\Teronis.NetStandard.Core.Localization.resources.dll (local) to .\en-US\ (package)
-3>    [Teronis.MSBuild.Packaging.ProjectBuildInPackage] Copy ..\..\Core.Localization\src\bin\Debug\netstandard2.0\nl-NL\Teronis.NetStandard.Core.Localization.resources.dll (local) to .\nl-NL\ (package)
-3>    [Teronis.MSBuild.Packaging.ProjectBuildInPackage] 6 local files have been copied to package. (TargetFramework=netstandard2.0)
+3>    [Tenekon.MSBuild.Packaging.ProjectBuildInPackage] Thanks for using my package. <3
+3>    [Tenekon.MSBuild.Packaging.ProjectBuildInPackage] Copy ..\..\Core.Localization\src\bin\Debug\netstandard2.0\Tenekon.NetStandard.Core.Localization.dll (local) to .\ (package)
+3>    [Tenekon.MSBuild.Packaging.ProjectBuildInPackage] Copy ..\..\Core.Localization\src\bin\Debug\netstandard2.0\Tenekon.NetStandard.Core.Localization.pdb (local) to .\ (package)
+3>    [Tenekon.MSBuild.Packaging.ProjectBuildInPackage] Copy ..\..\Core.Localization\src\bin\Debug\netstandard2.0\Tenekon.NetStandard.Core.Localization.xml (local) to .\ (package)
+3>    [Tenekon.MSBuild.Packaging.ProjectBuildInPackage] Copy ..\..\Core.Localization\src\bin\Debug\netstandard2.0\de-DE\Tenekon.NetStandard.Core.Localization.resources.dll (local) to .\de-DE\ (package)
+3>    [Tenekon.MSBuild.Packaging.ProjectBuildInPackage] Copy ..\..\Core.Localization\src\bin\Debug\netstandard2.0\en-US\Tenekon.NetStandard.Core.Localization.resources.dll (local) to .\en-US\ (package)
+3>    [Tenekon.MSBuild.Packaging.ProjectBuildInPackage] Copy ..\..\Core.Localization\src\bin\Debug\netstandard2.0\nl-NL\Tenekon.NetStandard.Core.Localization.resources.dll (local) to .\nl-NL\ (package)
+3>    [Tenekon.MSBuild.Packaging.ProjectBuildInPackage] 6 local files have been copied to package. (TargetFramework=netstandard2.0)
 ```
 
-This indicates that in each framework in project `Teronis.NetStandard.Core` the framework specific files from project `Teronis.NetStandard.Core.Localization` has been added to package.
+This indicates that in each framework in project `Tenekon.NetStandard.Core` the framework specific files from project `Tenekon.NetStandard.Core.Localization` has been added to package.
 
 2\. Unzip the `.nupkg` and look inside the `*.nuspec`-file
 
@@ -136,7 +138,7 @@ It should look like this:
     <dependency id="System.Threading.Tasks.Dataflow" version="5.0.0" exclude="Build,Analyzers" />
   </group>
   <group targetFramework=".NETStandard2.0">
-    <dependency id="Teronis.Nullable" version="0.1.8-alpha.202" exclude="Build,Analyzers" />
+    <dependency id="Tenekon.Nullable" version="0.1.8-alpha.202" exclude="Build,Analyzers" />
     <dependency id="Microsoft.Bcl.HashCode" version="1.1.1" exclude="Build,Analyzers" />
     <dependency id="Microsoft.CSharp" version="4.7.0" exclude="Build,Analyzers" />
     <dependency id="Microsoft.Extensions.Logging.Abstractions" version="5.0.0" exclude="Build,Analyzers" />
@@ -153,10 +155,10 @@ It should look like this:
 There **should no entry listed** that looks like:
 
 ```
-<dependency id="Teronis.NetStandard.Core.Localization" version="0.1.8-alpha.202" exclude="Build,Analyzers" />
+<dependency id="Tenekon.NetStandard.Core.Localization" version="0.1.8-alpha.202" exclude="Build,Analyzers" />
 ```
 
-3\. Unzip the `.nupkg` and look inside `lib/<target-framework>/` whether `Teronis.NetStandard.Core.Localization.(dll|pdb|xml)` is present.
+3\. Unzip the `.nupkg` and look inside `lib/<target-framework>/` whether `Tenekon.NetStandard.Core.Localization.(dll|pdb|xml)` is present.
 
 ## Frequent questions
 
@@ -175,7 +177,7 @@ There **should no entry listed** that looks like:
 <!-- Project B -->
 <ItemGroup>
   <ProjectReference Include="ProjectA" PrivateAssets="all">
-  <!--<PackageReference Include="Teronis.MSBuild.Packaging.ProjectBuildInPackage" Version="0.1.7" />-->
+  <!--<PackageReference Include="Tenekon.MSBuild.Packaging.ProjectBuildInPackage" Version="0.1.7" />-->
 </ItemGroup>
 ```
 
@@ -194,7 +196,7 @@ Now let's asumme this:
 <!-- Project B -->
 <ItemGroup>
   <ProjectReference Include="ProjectA" PrivateAssets="all">
-  <PackageReference Include="Teronis.MSBuild.Packaging.ProjectBuildInPackage" Version="0.1.7" />
+  <PackageReference Include="Tenekon.MSBuild.Packaging.ProjectBuildInPackage" Version="0.1.7" />
 </ItemGroup>
 ```
 
@@ -211,7 +213,7 @@ Because of the implicit behaviour and the usage of my package you have assemblie
 <!-- Project B -->
 <ItemGroup>
   <ProjectReference Include="ProjectA" PrivateAssets="all">
-  <PackageReference Include="Teronis.MSBuild.Packaging.ProjectBuildInPackage" Version="0.1.7" />
+  <PackageReference Include="Tenekon.MSBuild.Packaging.ProjectBuildInPackage" Version="0.1.7" />
   <!-- Use the SAME version like in Project A. -->
   <PackageReference Include="SomePackage" Version="*" />
 </ItemGroup>

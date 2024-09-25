@@ -6,7 +6,7 @@ Licensed under the MIT license. See LICENSE file in the project root for full li
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
   <PropertyGroup>
-    <IsTeronisMSBuildBuildTasksTargetTasksImported>true</IsTeronisMSBuildBuildTasksTargetTasksImported>
+    <IsTenekonMSBuildBuildTasksTargetTasksImported>true</IsTenekonMSBuildBuildTasksTargetTasksImported>
   </PropertyGroup>
 
   <!-- 

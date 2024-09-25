@@ -1,11 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TeronisProjectBuildInPackagePropsFile>../../src/build/Teronis.MSBuild.Packaging.ProjectBuildInPackage.props</TeronisProjectBuildInPackagePropsFile>
-    <TeronisProjectBuildInPackageTargetsFile>../../src/build/Teronis.MSBuild.Packaging.ProjectBuildInPackage.targets</TeronisProjectBuildInPackageTargetsFile>
-    <TeronisMSBuildBuildTasksTargetTasksTargetsFile>../../lib/Teronis.MSBuild.BuildTasks/build/TargetTasks.targets</TeronisMSBuildBuildTasksTargetTasksTargetsFile>
+    <TenekonProjectBuildInPackagePropsFile>../../src/build/Tenekon.MSBuild.Packaging.ProjectBuildInPackage.props</TenekonProjectBuildInPackagePropsFile>
+    <TenekonProjectBuildInPackageTargetsFile>../../src/build/Tenekon.MSBuild.Packaging.ProjectBuildInPackage.targets</TenekonProjectBuildInPackageTargetsFile>
+    <TenekonMSBuildBuildTasksTargetTasksTargetsFile>../../lib/Tenekon.MSBuild.BuildTasks/build/TargetTasks.targets</TenekonMSBuildBuildTasksTargetTasksTargetsFile>
   </PropertyGroup>
 
-  <Import Project="$(TeronisProjectBuildInPackagePropsFile)" />
+  <Import Project="$(TenekonProjectBuildInPackagePropsFile)" />
 
   <PropertyGroup>
     <IncludeSymbols>false</IncludeSymbols>
@@ -15,8 +15,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\0.Localization\Teronis.MSBuild.Packaging.ProjectBuildInPackage.Test.Localization.csproj" PrivateAssets="all" />
-    <ProjectReference Include="..\0.Localization2\Teronis.MSBuild.Packaging.ProjectBuildInPackage.Test.Localization2.csproj" PrivateAssets="all" />
+    <ProjectReference Include="..\0.Localization\Tenekon.MSBuild.Packaging.ProjectBuildInPackage.Test.Localization.csproj" PrivateAssets="all" />
+    <ProjectReference Include="..\0.Localization2\Tenekon.MSBuild.Packaging.ProjectBuildInPackage.Test.Localization2.csproj" PrivateAssets="all" />
   </ItemGroup>
 
   <Target Name="test123" AfterTargets="Build">
@@ -41,7 +41,7 @@
       </LocalPackageSearchProperties>
     </PropertyGroup>
 
-    <MSBuild Projects="$(TeronisMSBuildBuildTasksTargetTasksTargetsFile)" Targets="UnzipPackage" Properties="$(LocalPackageSearchProperties)">
+    <MSBuild Projects="$(TenekonMSBuildBuildTasksTargetTasksTargetsFile)" Targets="UnzipPackage" Properties="$(LocalPackageSearchProperties)">
       <Output TaskParameter="TargetOutputs" ItemName="_FoundPackage" />
     </MSBuild>
 
@@ -69,5 +69,5 @@
     <Message Text="[$(MSBuildThisFileName)] package %(_FoundPackage.Filename)%(_FoundPackage.Extension) has been deleted from the disk." Importance="high" />
   </Target>
 
-  <Import Project="$(TeronisProjectBuildInPackageTargetsFile)" />
+  <Import Project="$(TenekonProjectBuildInPackageTargetsFile)" />
 </Project>
