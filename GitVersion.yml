@@ -1,6 +1,6 @@
 mode: ContinuousDeployment
 continuous-delivery-fallback-tag: ''
-next-version: 1.0.0
+next-version: 2.0.0
 branches: {}
 ignore:
   sha: []
