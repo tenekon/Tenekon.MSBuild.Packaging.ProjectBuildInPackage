@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/tenekon/Tenekon.MSBuild.Packaging.ProjectBuildInPackage/compare/1.0.2...2.0.0) (2024-09-25)
+
+
+* feat!: carried out the name rebranding ([0803f67](https://github.com/tenekon/Tenekon.MSBuild.Packaging.ProjectBuildInPackage/commit/0803f670b867c1581b6f86bddfaac9aa58b4c009))
+
+
+### BREAKING CHANGES
+
+* To now reflect the organization name change, the package name has been renamed from Teronis.MSBuild.Packaging.ProjectBuildInPackage to Tenekon.MSBuild.Packaging.ProjectBuildInPackage.
+
+
+
 ## [1.0.2](https://github.com/teneko-net-tools/Tenekon.MSBuild.Packaging.ProjectBuildInPackage/compare/1.0.0...1.0.2) (2024-09-19)
 
 

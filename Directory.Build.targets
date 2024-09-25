@@ -7,4 +7,10 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
+
+  <Target Name="SetPackageReleaseNotes" DependsOnTargets="GetVersion" BeforeTargets="$(GitVersionTargetsBefore)">
+    <PropertyGroup>
+      <PackageReleaseNotes>https://github.com/tenekon/Tenekon.MSBuild.Packaging.ProjectBuildInPackage/blob/$(PackageVersion)/CHANGELOG.md</PackageReleaseNotes>
+    </PropertyGroup>
+  </Target>
 </Project>
