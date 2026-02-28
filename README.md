@@ -163,7 +163,7 @@ There **should no entry listed** that looks like:
 ## Frequent questions
 
 **Question**
-<br/>Why NuGet package does not include all dependencies when packing?
+<br/>Why doesn't my NuGet package include all dependencies when I run pack?
 
 **Answer**
 <br/>Let's first assume the following:
@@ -176,16 +176,16 @@ There **should no entry listed** that looks like:
 
 <!-- Project B -->
 <ItemGroup>
-  <ProjectReference Include="ProjectA" PrivateAssets="all">
+  <ProjectReference Include="ProjectA" PrivateAssets="all" />
   <!--<PackageReference Include="Tenekon.MSBuild.Packaging.ProjectBuildInPackage" Version="0.1.7" />-->
 </ItemGroup>
 ```
 
-You are telling NuGet that you don't want to have Project A to be picked  up as NuGet-dependency. This is implicit, you don't have control about that. **The down-side is** the assmeblies of Project A, but not the assemblies of the packages of Project A, are not present in package of Project B.
+By setting `PrivateAssets="all"` on the `ProjectReference`, you tell NuGet not to emit Project A as a dependency when packing Project B.
 
-By removing `PrivateAssets="all"` you disable the implicit behaviour of NuGet and the Project A will be picked up as NuGet dependency and EACH non-dependency package (also called transitive package).
+If you remove `PrivateAssets="all"`, NuGet can emit Project A as a package dependency, including its transitive package dependencies.
 
-Now let's asumme this:
+Now let's assume this:
 
 ```
 <!-- Project A -->
@@ -195,14 +195,14 @@ Now let's asumme this:
 
 <!-- Project B -->
 <ItemGroup>
-  <ProjectReference Include="ProjectA" PrivateAssets="all">
+  <ProjectReference Include="ProjectA" PrivateAssets="all" />
   <PackageReference Include="Tenekon.MSBuild.Packaging.ProjectBuildInPackage" Version="0.1.7" />
 </ItemGroup>
 ```
 
-By having installed my package I assist in the implicit behaviour of NuGet: By not picking up Project A as NuGet-dependency copy over the direct assemblies produced by Project A to the bin-folder of Project B. **This has the following drawback:**
+When this package is installed, it complements NuGet's behavior by copying Project A's build output into Project B's output. **This has the following drawback:**
 
-Because of the implicit behaviour and the usage of my package you have assemblies of Project A in Project B that are in need of the assemblies provided by packages (in your example "Some Package") you referenced in Project A. So a workaround is to add the packages from Project A in Project B explicitly as shown here:
+As a result, Project B may contain Project A assemblies without the package-provided assemblies that Project A depends on (for example, `SomePackage`). So a workaround is to add the packages from Project A in Project B explicitly as shown here:
 
 ```
 <!-- Project A -->
@@ -212,7 +212,7 @@ Because of the implicit behaviour and the usage of my package you have assemblie
 
 <!-- Project B -->
 <ItemGroup>
-  <ProjectReference Include="ProjectA" PrivateAssets="all">
+  <ProjectReference Include="ProjectA" PrivateAssets="all" />
   <PackageReference Include="Tenekon.MSBuild.Packaging.ProjectBuildInPackage" Version="0.1.7" />
   <!-- Use the SAME version like in Project A. -->
   <PackageReference Include="SomePackage" Version="*" />
