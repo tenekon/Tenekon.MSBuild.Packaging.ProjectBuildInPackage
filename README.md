@@ -6,6 +6,9 @@ _Allow project reference content to be added to the NuGet-package during pack pr
 
 > Was recently named `Teronis.MSBuild.Packaging.ProjectBuildInPackage`.
 
+> [!TIP]
+> The mechanic of this solution relies on `ResolveReferences` (MSBuild target) which implictly builds the projects even if you use `dotnet pack --no-build`. To prevent that from happening you must set the MSBuild property `BuildProjectReferences` to `false`, e.g. via `dotnet pack --no-build /p:BuildProjectReferences=false`.
+
 ## Installation
 
 Package Managaer
